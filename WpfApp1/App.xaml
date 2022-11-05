@@ -4,6 +4,12 @@
              xmlns:local="clr-namespace:WpfApp1"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+         <Style TargetType="ComboBox">
+             <Setter Property="FontSize" Value="14"/>
+         </Style>
+
+        <Style TargetType="ListView">
+             <Setter Property="FontSize" Value="14"/>
+         </Style>
     </Application.Resources>
 </Application>
