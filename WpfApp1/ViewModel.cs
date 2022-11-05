@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
@@ -20,18 +21,14 @@ public class ViewModel : INotifyPropertyChanged
         set
         {
             _mySelectedItemIndex = value;
-            switch (value)
+            _myItems = value switch
             {
-                case 0:
-                    _myItems = new List<string>() { "a", "aa", "aaa" };
-                    break;
-                case 1:
-                    _myItems = new List<string>() { "b", "bb", "bbb" };
-                    break;
-                case 2:
-                    _myItems = new List<string>() { "c", "cc", "ccc" };
-                    break;
-            }
+                0 => new List<string> { "a", "aa", "aaa" },
+                1 => new List<string> { "b", "bb", "bbb" },
+                2 => new List<string> { "c", "cc", "ccc" },
+                _ => throw new ArgumentOutOfRangeException(nameof(MySelectedItemIndex)),
+            };
+
             OnPropertyChanged(nameof(MyItems));
         }
     }
