@@ -17,7 +17,7 @@ public class ComboBoxItemConverter : IValueConverter
     {
         // NOTE: can be during Window initialization if FallbackValue is not set
         if (value is null)
-            return ViewModel.NotAValue;
+            return DataManager.NotAValue;
 
         return value switch
         {
