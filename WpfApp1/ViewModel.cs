@@ -12,7 +12,8 @@ public sealed class ViewModel : INotifyPropertyChanged
 {
     public ViewModel()
     {
-        DataManagerInstance = (Application.Current as App)!.DataManagerInstance;
+        // NOTE: null-coalescing is for preview in design time
+        DataManagerInstance = (Application.Current as App)?.DataManagerInstance ?? new DataManager();
     }
 
     public List<string> MyListItems => DataManagerInstance.GetListByChar(_mySelectedChar);
