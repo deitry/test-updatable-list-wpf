@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 
@@ -8,12 +9,22 @@ namespace WpfApp1;
 
 public class ViewModel : INotifyPropertyChanged
 {
-    public const char NotAValue = '\0';
+    public ViewModel()
+    {
+        _mappedLists = AvailableComboBoxItems.ToDictionary(c => c, MakeList);
+        _mappedLists.Add(NotAValue, new List<string>());
+    }
+
+    public static char NotAValue => '\0';
 
     private List<string> _myItems = new List<string> { "initialized", "default", "values" };
     private char _mySelectedChar;
 
     public List<string> MyItems => _myItems;
+
+    public List<char> AvailableComboBoxItems { get; } = new List<char> { 'a', 'b', 'c' };
+
+    private readonly Dictionary<char, List<string>> _mappedLists;
 
     public char MySelectedChar
     {
@@ -21,8 +32,9 @@ public class ViewModel : INotifyPropertyChanged
         set
         {
             _mySelectedChar = value;
-            if (value != NotAValue)
-                SetField(ref _myItems, MakeList(value), nameof(MyItems));
+
+            if (_mappedLists.ContainsKey(value))
+                SetField(ref _myItems, _mappedLists[value], nameof(MyItems));
         }
     }
 

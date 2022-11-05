@@ -24,13 +24,9 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <ComboBox SelectedItem="{Binding MySelectedChar, Mode=OneWayToSource, Converter={StaticResource ComboBoxItemConverter}, FallbackValue=a}">
-            <ComboBox.Items>
-                <ComboBoxItem Content="a"/>
-                <ComboBoxItem Content="b" IsSelected="True"/>
-                <ComboBoxItem Content="c"/>
-            </ComboBox.Items>
-        </ComboBox>
+        <ComboBox SelectedItem="{Binding MySelectedChar, Mode=OneWayToSource, Converter={StaticResource ComboBoxItemConverter}, FallbackValue=\0}"
+                  SelectedIndex="1"
+                  ItemsSource="{Binding AvailableComboBoxItems}"/>
 
         <ListView Grid.Row="1" x:Name="SourceList" ItemsSource="{Binding MyItems}" SelectionMode="Multiple"/>
         <ListView Grid.Row="2" ItemsSource="{Binding ElementName=SourceList, Path=SelectedItems}"/>
