@@ -19,11 +19,11 @@ public sealed class ViewModel : INotifyPropertyChanged
         DataManagerInstance = (Application.Current as App)?.DataManagerInstance ?? new DataManager();
     }
 
-    public List<string> MyListItems => DataManagerInstance.GetListByChar(_mySelectedChar);
-    public List<char> AvailableComboBoxItems => DataManagerInstance.AvailableComboBoxItems;
-
     private char _mySelectedChar = DataManager.NotAValue;
     private readonly DataManager DataManagerInstance;
+
+    public List<string> MyListItems => DataManagerInstance.GetListByChar(_mySelectedChar);
+    public List<char> AvailableComboBoxItems => DataManagerInstance.AvailableComboBoxItems;
 
     public char MySelectedChar
     {
