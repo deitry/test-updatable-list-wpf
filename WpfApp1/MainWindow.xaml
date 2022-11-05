@@ -28,7 +28,7 @@
                   SelectedIndex="1"
                   ItemsSource="{Binding AvailableComboBoxItems}"/>
 
-        <ListView Grid.Row="1" x:Name="SourceList" ItemsSource="{Binding MyItems}" SelectionMode="Multiple"/>
+        <ListView Grid.Row="1" x:Name="SourceList" ItemsSource="{Binding MyListItems}" SelectionMode="Multiple"/>
         <ListView Grid.Row="2" ItemsSource="{Binding ElementName=SourceList, Path=SelectedItems}"/>
     </Grid>
 </Window>
