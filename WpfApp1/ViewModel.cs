@@ -23,9 +23,9 @@ public class ViewModel : INotifyPropertyChanged
             _mySelectedItemIndex = value;
             _myItems = value switch
             {
-                0 => new List<string> { "a", "aa", "aaa" },
-                1 => new List<string> { "b", "bb", "bbb" },
-                2 => new List<string> { "c", "cc", "ccc" },
+                0 => new List<string> { "a", "aa", "aaa", "aaaa", "aaaaa" },
+                1 => new List<string> { "b", "bb", "bbb", "bbbb", "bbbbb" },
+                2 => new List<string> { "c", "cc", "ccc", "cccc", "ccccc" },
                 _ => throw new ArgumentOutOfRangeException(nameof(MySelectedItemIndex)),
             };
 
