@@ -7,8 +7,14 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
 
+    <Window.Resources>
+        <ResourceDictionary>
+            <local:ComboBoxItemConverter x:Key="ComboBoxItemConverter"/>
+        </ResourceDictionary>
+    </Window.Resources>
+
     <Window.DataContext>
-        <local:ViewModel MySelectedItemIndex="0"/>
+        <local:ViewModel/>
     </Window.DataContext>
 
     <Grid>
@@ -18,11 +24,11 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <ComboBox SelectedIndex="{Binding MySelectedItemIndex}">
+        <ComboBox SelectedItem="{Binding MySelectedChar, Mode=OneWayToSource, Converter={StaticResource ComboBoxItemConverter}, FallbackValue='a'}">
             <ComboBox.Items>
-                <ComboBoxItem Content="1"/>
-                <ComboBoxItem Content="2"/>
-                <ComboBoxItem Content="3"/>
+                <ComboBoxItem Content="a"/>
+                <ComboBoxItem Content="b" IsSelected="True"/>
+                <ComboBoxItem Content="c"/>
             </ComboBox.Items>
         </ComboBox>
 

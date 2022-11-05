@@ -9,27 +9,20 @@ namespace WpfApp1;
 public class ViewModel : INotifyPropertyChanged
 {
     public List<string> _myItems = new List<string>() { "initialized", "default", "values" };
-    private int _mySelectedItemIndex;
+    private char _mySelectedChar;
 
     public List<string> MyItems
     {
         get => _myItems;
     }
 
-    public int MySelectedItemIndex
+    public char MySelectedChar
     {
-        get => _mySelectedItemIndex;
+        get => _mySelectedChar;
         set
         {
-            _mySelectedItemIndex = value;
-            _myItems = value switch
-            {
-                0 => MakeList('a', 3),
-                1 => MakeList('b', 5),
-                2 => MakeList('c', 7),
-                _ => throw new ArgumentOutOfRangeException(nameof(MySelectedItemIndex)),
-            };
-
+            _mySelectedChar = value;
+            _myItems = MakeList(value, 5);
             OnPropertyChanged(nameof(MyItems));
         }
     }
