@@ -8,13 +8,12 @@ namespace WpfApp1;
 
 public class ViewModel : INotifyPropertyChanged
 {
-    public List<string> _myItems = new List<string>() { "initialized", "default", "values" };
+    public const char NotAValue = '\0';
+
+    private List<string> _myItems = new List<string> { "initialized", "default", "values" };
     private char _mySelectedChar;
 
-    public List<string> MyItems
-    {
-        get => _myItems;
-    }
+    public List<string> MyItems => _myItems;
 
     public char MySelectedChar
     {
@@ -22,16 +21,27 @@ public class ViewModel : INotifyPropertyChanged
         set
         {
             _mySelectedChar = value;
-            _myItems = MakeList(value, 5);
-            OnPropertyChanged(nameof(MyItems));
+            if (value != NotAValue)
+                SetField(ref _myItems, MakeList(value), nameof(MyItems));
         }
     }
 
-    private static List<string> MakeList(char seed, int count)
+    private static int CountByValue(char seed)
     {
+        return seed switch
+        {
+            'a' => 3,
+            'b' => 5,
+            'c' => 7,
+            _ => 0,
+        };
+    }
+
+    private static List<string> MakeList(char seed)
+    {
+        var count = CountByValue(seed);
         return Enumerable.Range(1, count)
-            .Select(i => Enumerable.Repeat(seed, i))
-            .Select(e => string.Join("", e))
+            .Select(i => new string(seed, i))
             .ToList();
     }
 

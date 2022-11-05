@@ -24,7 +24,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <ComboBox SelectedItem="{Binding MySelectedChar, Mode=OneWayToSource, Converter={StaticResource ComboBoxItemConverter}, FallbackValue='a'}">
+        <ComboBox SelectedItem="{Binding MySelectedChar, Mode=OneWayToSource, Converter={StaticResource ComboBoxItemConverter}, FallbackValue=a}">
             <ComboBox.Items>
                 <ComboBoxItem Content="a"/>
                 <ComboBoxItem Content="b" IsSelected="True"/>

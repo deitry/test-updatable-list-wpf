@@ -13,9 +13,11 @@ public class ComboBoxItemConverter : IValueConverter
         throw new NotSupportedException();
     }
 
-    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    public object ConvertBack(object? value, Type targetType, object parameter, CultureInfo culture)
     {
-        if (value is null) return 'm';
+        // NOTE: can be during Window initialization if FallbackValue is not set
+        if (value is null)
+            return ViewModel.NotAValue;
 
         return value switch
         {
