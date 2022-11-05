@@ -8,6 +8,9 @@ using System.Windows;
 
 namespace WpfApp1;
 
+/// <summary>
+/// ViewModel behind MainWindow
+/// </summary>
 public sealed class ViewModel : INotifyPropertyChanged
 {
     public ViewModel()

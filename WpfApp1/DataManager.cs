@@ -3,6 +3,9 @@ using System.Linq;
 
 namespace WpfApp1;
 
+/// <summary>
+/// Provides source data for views
+/// </summary>
 public class DataManager
 {
     public const char NotAValue = '\0';
@@ -14,9 +17,9 @@ public class DataManager
     public DataManager()
     {
         _mappedLists = AvailableComboBoxItems.ToDictionary(c => c, MakeList);
-        _mappedLists.Add(NotAValue, new List<string>());
     }
 
+    /// <returns>Mapped list for given char, empty list otherwise</returns>
     public List<string> GetListByChar(char c)
     {
         return _mappedLists.TryGetValue(c, out var list)
@@ -24,6 +27,9 @@ public class DataManager
             : new List<string>();
     }
 
+    /// <summary>
+    /// Creates a list of strings for given char
+    /// </summary>
     private static List<string> MakeList(char seed)
     {
         var count = CountByValue(seed);
@@ -32,6 +38,9 @@ public class DataManager
             .ToList();
     }
 
+    /// <summary>
+    /// How many strings should be in the mapped list for given char
+    /// </summary>
     private static int CountByValue(char seed)
     {
         return seed switch
