@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 
 namespace WpfApp1;
@@ -23,14 +24,22 @@ public class ViewModel : INotifyPropertyChanged
             _mySelectedItemIndex = value;
             _myItems = value switch
             {
-                0 => new List<string> { "a", "aa", "aaa", "aaaa", "aaaaa" },
-                1 => new List<string> { "b", "bb", "bbb", "bbbb", "bbbbb" },
-                2 => new List<string> { "c", "cc", "ccc", "cccc", "ccccc" },
+                0 => MakeList('a', 3),
+                1 => MakeList('b', 5),
+                2 => MakeList('c', 7),
                 _ => throw new ArgumentOutOfRangeException(nameof(MySelectedItemIndex)),
             };
 
             OnPropertyChanged(nameof(MyItems));
         }
+    }
+
+    private static List<string> MakeList(char seed, int count)
+    {
+        return Enumerable.Range(1, count)
+            .Select(i => Enumerable.Repeat(seed, i))
+            .Select(e => string.Join("", e))
+            .ToList();
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;
